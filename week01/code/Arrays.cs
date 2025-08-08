@@ -13,7 +13,18 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // PLAN:
+        // 1. Create a new array of type double with a size equal to 'length'.
+        // 2. Loop through the array using a for loop, with index i from 0 to length - 1.
+        // 3. For each index i, assign number * (i + 1) to the array.
+        // 4. After the loop ends, return the array.
+        double[] multiples = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+        return multiples;
+        
     }
 
     /// <summary>
@@ -29,5 +40,25 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // PLAN:
+        // 1. Determine the size of the list: data.Count.
+        // 2. Use GetRange to get the last 'amount' elements (i.e., data.Count - amount to end).
+        // 3. Use GetRange again to get the first part (i.e., 0 to data.Count - amount).
+        // 4. Clear the original list (or overwrite it) and add the two parts in rotated order:
+        //    - First add the last part (step 2), then the first part (step 3).
+        // 5. This effectively rotates the list to the right.
+
+        int count = data.Count;
+
+        if (amount <= 0 || amount >= count)
+            return; // Edge case: rotating by full length or 0 doesn't change the list.
+
+        List<int> lastPart = data.GetRange(count - amount, amount);
+        List<int> firstPart = data.GetRange(0, count - amount);
+
+        data.Clear();
+        data.AddRange(lastPart);
+        data.AddRange(firstPart);
     }
 }
